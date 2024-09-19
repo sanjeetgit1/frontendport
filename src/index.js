@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';  // Use 'react-dom/client' for React 18
 import App from './App';
-import {Provider}  from "react-redux";
+import { Provider } from 'react-redux';
 import store from './Store';
-import {  positions, transitions } from "react-alert";
-
+import { positions, transitions, Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 const options = {
   position: positions.BOTTOM_CENTER,
@@ -12,13 +12,14 @@ const options = {
   transition: transitions.SCALE,
 };
 
+// Use ReactDOM.createRoot for React 18
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
- <Provider store={store}>
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...options}>
         <App />
-      
-    </Provider> 
+      </AlertProvider>
+    </Provider>
   </React.StrictMode>
 );
-
